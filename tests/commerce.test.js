@@ -1,4 +1,4 @@
-const { Basket, addToBasket, removeFromBasket ,testAddRemove ,transactionAllowed ,payBasket} = require('../src/ecommerce');
+const { Basket, addToBasket, removeFromBasket ,testAddRemove ,transactionAllowed ,payBasket ,testAppEcommerce} = require('../src/ecommerce');
 
 test('ajout d’un produit met à jour le prix total', () => {
   const basket = new Basket();
@@ -37,4 +37,9 @@ test('test pour le paiement au panier ', () => {
   const paiement2 = payBasket(user, basket);
   expect(paiement2).toBe(false);     
   expect(user.balance).toBe(200);        
+});
+
+
+test('fonction principale',()=>{
+    testAppEcommerce();
 });
