@@ -1,4 +1,4 @@
-const { Basket, addToBasket, removeFromBasket ,testAddRemove ,transactionAllowed} = require('../src/ecommerce');
+const { Basket, addToBasket, removeFromBasket ,testAddRemove ,transactionAllowed ,payBasket} = require('../src/ecommerce');
 
 test('ajout d’un produit met à jour le prix total', () => {
   const basket = new Basket();
@@ -25,3 +25,16 @@ test('test factorisé: ajout puis suppression d un produit ', () => {
  expect(transactionAllowed(user,600)).toBe(false);
  });
 
+ 
+test('test pour le paiement au panier ', () => {
+  const user = { name: 'Perceval', balance: 500 };
+  const basket = new Basket();
+  const item = { name: 'Carte graphique', price: 300 };
+  addToBasket(basket, item);
+  const premier_paiement = payBasket(user, basket);
+  expect(premier_paiement).toBe(true);       
+  expect(user.balance).toBe(200);        
+  const paiement2 = payBasket(user, basket);
+  expect(paiement2).toBe(false);     
+  expect(user.balance).toBe(200);        
+});

@@ -35,5 +35,14 @@ function transactionAllowed (userAccount ,priceToPay){
    return userAccount.balance >= priceToPay ;
 }
 
+function payBasket(userAccount ,basket){
+ if(transactionAllowed(userAccount ,basket.totalPrice)) {
+ userAccount.balance -= basket.totalPrice;
+ return true ;
+ } else {
+ return false;
+ }
+}
 
-module.exports = { Basket, addToBasket, removeFromBasket ,testAddRemove ,transactionAllowed};
+
+module.exports = { Basket, addToBasket, removeFromBasket ,testAddRemove ,transactionAllowed ,payBasket};
