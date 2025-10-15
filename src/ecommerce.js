@@ -31,5 +31,9 @@ function testAddRemove(){
   }
 
 
+function transactionAllowed (userAccount ,priceToPay){
+   return userAccount.balance >= priceToPay ;
+}
 
-module.exports = { Basket, addToBasket, removeFromBasket ,testAddRemove};
+
+module.exports = { Basket, addToBasket, removeFromBasket ,testAddRemove ,transactionAllowed};

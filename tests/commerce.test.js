@@ -1,4 +1,4 @@
-const { Basket, addToBasket, removeFromBasket ,testAddRemove} = require('../src/ecommerce');
+const { Basket, addToBasket, removeFromBasket ,testAddRemove ,transactionAllowed} = require('../src/ecommerce');
 
 test('ajout d’un produit met à jour le prix total', () => {
   const basket = new Basket();
@@ -17,5 +17,11 @@ test('suppression d’un produit remet le total à zéro', () => {
 
 test('test factorisé: ajout puis suppression d un produit ', () => {
  expect(testAddRemove()).toBe(true);
+ });
+ 
+ test ('transcation Allowed valide avec les tous  les cas demandées ', () => {
+ const user ={name :'Perceval' , balance:500};
+ expect(transactionAllowed(user,400)).toBe(true);
+ expect(transactionAllowed(user,600)).toBe(false);
  });
 
